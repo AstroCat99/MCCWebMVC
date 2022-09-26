@@ -1,30 +1,26 @@
-﻿using MCCWebMVC.Models;
+﻿using MCCWebMVC.Contexts;
+using MCCWebMVC.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System;
-using System.Data.SqlClient;
-using MCCWebMVC.Contexts;
 using System.Linq;
 
 namespace MCCWebMVC.Controllers
 {
-    public class GajiController : Controller
+    public class KaryawanController : Controller
     {
         MyContext myContext;
 
-        public GajiController(MyContext myContext)
+        public KaryawanController(MyContext myContext)
         {
             this.myContext = myContext;
         }
 
-
-        //READ
         public IActionResult Index()
         {
-            var data = myContext.Gajis.ToList();
+            var data = myContext.Karyawans.ToList();
 
             return View(data);
         }
+
         //CREATE
         //get
         public IActionResult Create()
@@ -35,13 +31,13 @@ namespace MCCWebMVC.Controllers
         //post
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Gaji gaji)
+        public IActionResult Create(Karyawan karyawan)
         {
             if (ModelState.IsValid)
             {
-                myContext.Gajis.Add(gaji);
+                myContext.Karyawans.Add(karyawan);
                 var result = myContext.SaveChanges();
-                if(result > 0)
+                if (result > 0)
                     return RedirectToAction("Index");
             }
             return View();
@@ -51,24 +47,24 @@ namespace MCCWebMVC.Controllers
         //GET
         public IActionResult Edit(int id)
         {
-            var data = myContext.Gajis.Where(x => x.Id == id).SingleOrDefault();
+            var data = myContext.Karyawans.Where(x => x.Id == id).SingleOrDefault();
             return View(data);
         }
 
         //POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, Gaji gaji)
+        public IActionResult Edit(int id, Karyawan karyawan)
         {
-            var data = myContext.Gajis.FirstOrDefault(x => x.Id == id);
+            var data = myContext.Karyawans.FirstOrDefault(x => x.Id == id);
 
             if (data != null)
             {
-                data.Pokok = gaji.Pokok;
-                data.Tunjangan = gaji.Tunjangan;
-                data.Akomodasi = gaji.Akomodasi;
-                data.Bank = gaji.Bank;
-                data.Rekening = gaji.Rekening;
+                data.Name = karyawan.Name;
+                data.Ktp = karyawan.Ktp;
+                data.Telpon = karyawan.Telpon;
+                data.JabatanId = karyawan.JabatanId;
+                data.GajiId = karyawan.GajiId;
                 myContext.SaveChanges();
 
                 return RedirectToAction("Index");
@@ -81,19 +77,19 @@ namespace MCCWebMVC.Controllers
         //get
         public IActionResult Delete(int id)
         {
-            var data = myContext.Gajis.Where(x => x.Id == id).SingleOrDefault();
+            var data = myContext.Karyawans.Where(x => x.Id == id).SingleOrDefault();
             return View(data);
         }
 
         //post
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Delete(int id, Gaji gaji)
+        public IActionResult Delete(int id, Gaji karyawan)
         {
-            var data = myContext.Gajis.FirstOrDefault(x => x.Id == id);
+            var data = myContext.Karyawans.FirstOrDefault(x => x.Id == id);
             if (data != null)
             {
-                myContext.Gajis.Remove(data);
+                myContext.Karyawans.Remove(data);
                 myContext.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -104,9 +100,8 @@ namespace MCCWebMVC.Controllers
         //DETAILS
         public IActionResult Details(int id)
         {
-            var data = myContext.Gajis.Where(x => x.Id == id).SingleOrDefault();
+            var data = myContext.Karyawans.Where(x => x.Id == id).SingleOrDefault();
             return View(data);
         }
-
     }
 }
