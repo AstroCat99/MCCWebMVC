@@ -1,6 +1,8 @@
 ﻿using MCCWebMVC.Contexts;
 using MCCWebMVC.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace MCCWebMVC.Controllers
@@ -16,15 +18,17 @@ namespace MCCWebMVC.Controllers
 
         public IActionResult Index()
         {
-            var data = myContext.Karyawans.ToList();
+            var datas = myContext.Karyawans.Include(data => data.Jabatan).ToList();
 
-            return View(data);
+            return View(datas);
         }
 
         //CREATE
         //get
         public IActionResult Create()
         {
+            ViewBag.JabatanId = new SelectList(myContext.Jabatans, "Id", "Id");
+            ViewBag.GajiId = new SelectList(myContext.Gajis, "Id", "Id");
             return View();
         }
 
@@ -48,6 +52,8 @@ namespace MCCWebMVC.Controllers
         public IActionResult Edit(int id)
         {
             var data = myContext.Karyawans.Where(x => x.Id == id).SingleOrDefault();
+            ViewBag.JabatanId = new SelectList(myContext.Jabatans, "Id", "Id", data.JabatanId);
+            ViewBag.GajiId = new SelectList(myContext.Gajis, "Id", "Id", data.GajiId);
             return View(data);
         }
 

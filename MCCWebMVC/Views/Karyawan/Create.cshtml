@@ -29,12 +29,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="JabatanId" class="control-label"></label>
-                <input asp-for="JabatanId" class="form-control" />
+                <select asp-for="JabatanId" class="form-control" asp-items="ViewBag.JabatanId"></select>
                 <span asp-validation-for="JabatanId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="GajiId" class="control-label"></label>
-                <input asp-for="GajiId" class="form-control" />
+                <select asp-for="GajiId" class="form-control" asp-items="ViewBag.GajiId"></select>
                 <span asp-validation-for="GajiId" class="text-danger"></span>
             </div>
             <div class="form-group">
