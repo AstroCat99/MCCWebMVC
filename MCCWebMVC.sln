@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32819.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MCCWebMVC", "MCCWebMVC\MCCWebMVC.csproj", "{3DA4CB79-8984-4B17-92A0-FA4078E2F67F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MCCWebMVC", "MCCWebMVC\MCCWebMVC.csproj", "{3DA4CB79-8984-4B17-92A0-FA4078E2F67F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MCCWebAPI", "MCCWebAPI\MCCWebAPI.csproj", "{49786C13-50EF-4E9D-B376-AE6C485FEF0E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{3DA4CB79-8984-4B17-92A0-FA4078E2F67F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3DA4CB79-8984-4B17-92A0-FA4078E2F67F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3DA4CB79-8984-4B17-92A0-FA4078E2F67F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49786C13-50EF-4E9D-B376-AE6C485FEF0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49786C13-50EF-4E9D-B376-AE6C485FEF0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49786C13-50EF-4E9D-B376-AE6C485FEF0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49786C13-50EF-4E9D-B376-AE6C485FEF0E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
