@@ -1,7 +1,9 @@
 ﻿using MCCWebAPI.Context;
 using MCCWebAPI.Models;
+using MCCWebAPI.Models.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace MCCWebAPI.Controllers
@@ -21,7 +23,7 @@ namespace MCCWebAPI.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var data = myContext.Karyawans.ToList();
+            var data = myContext.Karyawans.Include(data => data.Jabatan).Include(data => data.Gaji).ToList();
             if (data.Count == 0)
                 return Ok(new { message = "sukses mengambil data", statusCode = 200, data = "null" });
             return Ok(new { message = "sukses mengambil data", statusCode = 200, data = data });
@@ -38,7 +40,7 @@ namespace MCCWebAPI.Controllers
 
         //UPDATE
         [HttpPut]
-        public IActionResult Put(Karyawan karyawan)
+        public IActionResult Put(KaryawanViewModel karyawan)
         {
             var data = myContext.Karyawans.Find(karyawan.Id);
             data.Name = karyawan.Name;
@@ -55,9 +57,17 @@ namespace MCCWebAPI.Controllers
 
         //CREATE 
         [HttpPost]
-        public IActionResult Post(Karyawan karyawan)
+        public IActionResult Post(KaryawanViewModel karyawan)
         {
-            myContext.Karyawans.Add(karyawan);
+            //myContext.Karyawans.Add(karyawan);
+            myContext.Karyawans.Add(new Karyawan
+            {
+                Id = karyawan.Id,
+                Name = karyawan.Name,
+                Ktp = karyawan.Ktp,
+                JabatanId = karyawan.JabatanId,
+                GajiId = karyawan.GajiId
+            });
             var result = myContext.SaveChanges();
             if (result > 0)
                 return Ok(new { statusCode = 200, message = "Berhasil menambahkan data" });
