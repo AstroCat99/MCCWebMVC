@@ -1,4 +1,5 @@
 using MCCWebAPI.Context;
+using MCCWebAPI.Respositories.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -51,6 +52,14 @@ namespace MCCWebAPI
                     }
                 });
             });
+
+            #region Dependency Injection
+
+            services.AddScoped<GajiRepository>();
+            services.AddScoped<JabatanRepository>();
+            services.AddScoped<KaryawanRepository>();
+
+            #endregion Dependency Injection
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
