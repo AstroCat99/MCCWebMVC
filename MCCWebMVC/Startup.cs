@@ -59,7 +59,7 @@ namespace MCCWebMVC
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Gaji}/{action=Index}/{id?}");
+                    pattern: "{controller=AccountMVC}/{action=Login}/{id?}");
             });
         }
     }

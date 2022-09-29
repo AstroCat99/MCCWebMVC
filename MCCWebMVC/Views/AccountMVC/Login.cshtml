@@ -3,8 +3,36 @@
 *@
 @{
 }
-<form action="/AccountMVC/login" method="post">
-    <input name="email" value="" />
-    <input name="password" value="" />
-    <input type="submit" value="Login" class="btn btn-primary" />
-</form>
+
+<h1>Login Into An Account</h1>
+
+<h4>Account</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form action="/AccountMVC/login" method="post">
+            <div class="form-group">
+                <label name="email" class="control-label">Email</label>
+                <input name="email" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label name="password" class="control-label">Password</label>
+                <input name="password" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Login" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a href="https://localhost:44318/AccountMVC/forgotpass">Forgot Password</a>
+</div>
+<div>
+    <a href="https://localhost:44318/AccountMVC/changePass">Change Password</a>
+</div>
+<div>
+    <a href="https://localhost:44318/AccountMVC/registrasi">Sign In</a>
+</div>

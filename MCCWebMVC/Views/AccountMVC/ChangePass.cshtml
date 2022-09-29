@@ -3,9 +3,33 @@
 *@
 @{
 }
-<form action="/AccountMVC/changepass" method="post">
-    <input name="email" value="" />
-    <input name="oldpassword" value="" />
-    <input name="newpassword" value="" />
-    <input type="submit" value="Change" class="btn btn-primary" />
-</form>
+
+<h1>Change Your Password</h1>
+
+<h4>Account</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form action="/AccountMVC/changepass" method="post">
+            <div class="form-group">
+                <label name="email" class="control-label">Email</label>
+                <input name="email" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label name="oldpassword" class="control-label">Old Password</label>
+                <input name="oldpassword" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label name="newpassword" class="control-label">New Password</label>
+                <input name="newpassword" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a href="https://localhost:44318/AccountMVC/Login">Back to Login</a>

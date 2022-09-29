@@ -6,9 +6,9 @@ namespace MCCWebAPI.Respositories.Interface
 {
     public interface IKaryawanRepository
     {
-        List<Karyawan> Get();
+        List<EmployeeData> Get();
 
-        Karyawan Get(int id);
+        EmployeeData Get(int id);
 
         int Post(KaryawanViewModel karyawan);
 

@@ -25,13 +25,13 @@ namespace MCCWebAPI.Respositories.Data
             return result;
         }
 
-        public List<Karyawan> Get()
+        public List<EmployeeData> Get()
         {
             var data = myContext.Karyawans.Include(data => data.Jabatan).Include(data => data.Gaji).ToList();
             return data;
         }
 
-        public Karyawan Get(int id)
+        public EmployeeData Get(int id)
         {
             var data = myContext.Karyawans.Find(id);
             return data;
@@ -39,7 +39,7 @@ namespace MCCWebAPI.Respositories.Data
 
         public int Post(KaryawanViewModel karyawan)
         {
-            myContext.Karyawans.Add(new Karyawan
+            myContext.Karyawans.Add(new EmployeeData
             {
                 Id = karyawan.Id,
                 Name = karyawan.Name,

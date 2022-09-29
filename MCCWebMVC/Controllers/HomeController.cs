@@ -1,4 +1,4 @@
-﻿using MCCWebMVC.Models.ViewModel;
+﻿using MCCWebMVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
