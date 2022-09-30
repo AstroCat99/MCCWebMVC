@@ -1,17 +1,15 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MCCWebAPI.Models
 {
     public class Gaji
     {
-        [Key]
+        public Employee Employee { get; set; }
+        [ForeignKey("Employee")]
         public int Id { get; set; }
 
         public int Pokok { get; set; }
-
-        public int Tunjangan { get; set; }
-
-        public int Akomodasi { get; set; }
 
         public string Bank { get; set; }
 

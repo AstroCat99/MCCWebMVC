@@ -18,6 +18,35 @@ namespace MCCWebAPI.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("MCCWebAPI.Models.CutiLibur", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Bulan")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Cuti")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Libur")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.ToTable("CutiLiburs");
+                });
+
             modelBuilder.Entity("MCCWebAPI.Models.Employee", b =>
                 {
                     b.Property<int>("Id")
@@ -31,7 +60,15 @@ namespace MCCWebAPI.Migrations
                     b.Property<string>("FullName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("JabatanId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Telpon")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("JabatanId");
 
                     b.ToTable("Employees");
                 });
@@ -39,11 +76,6 @@ namespace MCCWebAPI.Migrations
             modelBuilder.Entity("MCCWebAPI.Models.Gaji", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Akomodasi")
                         .HasColumnType("int");
 
                     b.Property<string>("Bank")
@@ -54,9 +86,6 @@ namespace MCCWebAPI.Migrations
 
                     b.Property<string>("Rekening")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Tunjangan")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -79,37 +108,6 @@ namespace MCCWebAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Jabatans");
-                });
-
-            modelBuilder.Entity("MCCWebAPI.Models.Karyawan", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("GajiId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("JabatanId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Ktp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Telpon")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GajiId");
-
-                    b.HasIndex("JabatanId");
-
-                    b.ToTable("Karyawans");
                 });
 
             modelBuilder.Entity("MCCWebAPI.Models.Role", b =>
@@ -162,17 +160,29 @@ namespace MCCWebAPI.Migrations
                     b.ToTable("UserRoles");
                 });
 
-            modelBuilder.Entity("MCCWebAPI.Models.Karyawan", b =>
+            modelBuilder.Entity("MCCWebAPI.Models.CutiLibur", b =>
                 {
-                    b.HasOne("MCCWebAPI.Models.Gaji", "Gaji")
+                    b.HasOne("MCCWebAPI.Models.Employee", "Employee")
                         .WithMany()
-                        .HasForeignKey("GajiId")
+                        .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
 
+            modelBuilder.Entity("MCCWebAPI.Models.Employee", b =>
+                {
                     b.HasOne("MCCWebAPI.Models.Jabatan", "Jabatan")
                         .WithMany()
                         .HasForeignKey("JabatanId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MCCWebAPI.Models.Gaji", b =>
+                {
+                    b.HasOne("MCCWebAPI.Models.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

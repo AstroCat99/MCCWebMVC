@@ -12,6 +12,7 @@
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
             <div class="form-group">
                 <label asp-for="Id" class="control-label"></label>
                 <input asp-for="Id" class="form-control" />
@@ -21,16 +22,6 @@
                 <label asp-for="Pokok" class="control-label"></label>
                 <input asp-for="Pokok" class="form-control" />
                 <span asp-validation-for="Pokok" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Tunjangan" class="control-label"></label>
-                <input asp-for="Tunjangan" class="form-control" />
-                <span asp-validation-for="Tunjangan" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Akomodasi" class="control-label"></label>
-                <input asp-for="Akomodasi" class="form-control" />
-                <span asp-validation-for="Akomodasi" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Bank" class="control-label"></label>

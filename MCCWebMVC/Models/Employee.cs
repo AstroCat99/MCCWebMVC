@@ -1,27 +1,21 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace MCCWebAPI.Models
+namespace MCCWebMVC.Models
 {
-    public class EmployeeData
+    public class Employee
     {
         [Key]
-        public Employee Employee { get; set; }
-        [ForeignKey("Employee")]
         public int Id { get; set; }
 
-        public string Name { get; set; }
+        public string FullName { get; set; }
 
-        public string Ktp { get; set; }
+        public string Email { get; set; }
 
         public string Telpon { get; set; }
 
         public Jabatan Jabatan { get; set; }
         [ForeignKey("Jabatan")]
         public int JabatanId { get; set; }
-
-        public Gaji Gaji { get; set; }
-        [ForeignKey("Gaji")]
-        public int GajiId { get; set; }
     }
 }

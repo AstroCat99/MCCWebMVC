@@ -1,0 +1,57 @@
+﻿@model IEnumerable<MCCWebMVC.Models.CutiLibur>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bulan)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cuti)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Libur)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bulan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cuti)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Libur)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                    <a asp-action="ApproveSelfReport" asp-route-id="@item.Id">Approve</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

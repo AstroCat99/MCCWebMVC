@@ -1,7 +1,7 @@
-﻿using MCCWebAPI.Models;
+﻿using MCCWebMVC.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace MCCWebAPI.Context
+namespace MCCWebMVC.Context
 {
     public class MyContext : DbContext
     {
@@ -15,7 +15,5 @@ namespace MCCWebAPI.Context
         public DbSet<CutiLibur> CutiLiburs { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Role> Roles { get; set; }
-        public DbSet<User> Users { get; set; }
-        public DbSet<UserRole> UserRoles { get; set; }
     }
 }

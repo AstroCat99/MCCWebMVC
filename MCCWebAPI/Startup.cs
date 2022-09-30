@@ -59,6 +59,7 @@ namespace MCCWebAPI
             services.AddScoped<JabatanRepository>();
             services.AddScoped<KaryawanRepository>();
             services.AddScoped<AccountRepository>();
+            services.AddScoped<CutiLiburRepository>();
 
             #endregion Dependency Injection
         }

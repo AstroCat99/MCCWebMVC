@@ -34,7 +34,17 @@ namespace MCCWebMVC.Controllers
             {
                 var data = JsonConvert.DeserializeObject<ResponseClient>(await result.Content.ReadAsStringAsync());
                 HttpContext.Session.SetString("Role", data.Data.Role);
-                return RedirectToAction("Index", "Home");
+                HttpContext.Session.SetString("Id", Convert.ToString(data.Data.Id));
+                HttpContext.Session.SetString("JabatanId", Convert.ToString(data.Data.JabatanId));
+                var Role = HttpContext.Session.GetString("Role");
+                if(Role == "Admin")
+                    return RedirectToAction("Index", "Gaji");
+                else
+                {
+                    var Id = HttpContext.Session.GetString("Id");
+                    return RedirectToAction("EditByEmployee", "Employee", new { id = Id });
+                }
+                    
             }
             return View();
         }

@@ -38,32 +38,44 @@ namespace MCCWebAPI.Respositories.Data
                 Id = data.Id,
                 Email = data.User.Employee.Email,
                 FullName = data.User.Employee.FullName,
-                Role = data.Role.Name
-
+                Role = data.Role.Name,
+                JabatanId = data.User.Employee.JabatanId
             };
         }
 
         public int Register(AccountViewModel accountViewModel) 
         {
             var result = 0;
-            Employee pegawai = new Employee {
+            Employee pegawai = new Employee
+            {
                 Id = 0,
                 FullName = accountViewModel.FullName,
-                Email = accountViewModel.Email
+                Email = accountViewModel.Email,
+                Telpon = "0",
+                JabatanId = 1
             };
             myContext.Employees.Add(pegawai);
             var pegawaiSaved = myContext.SaveChanges();
             if (pegawaiSaved > 0)
-            { 
+            {
                 var dataPegawai = myContext.Employees.
                 FirstOrDefault(
                 x => x.FullName.Equals(pegawai.FullName)
                 &&
                 x.Email.Equals(pegawai.Email));
+
+                Gaji gaji = new Gaji
+                {
+                    Id = dataPegawai.Id,
+                    Pokok = 0,
+                    Bank = "Default",
+                    Rekening = "0"
+                };
+
                 User user = new User
                 {
                     Id = dataPegawai.Id,
-                    Password = HashPassword(accountViewModel.Password) 
+                    Password = HashPassword(accountViewModel.Password)
                 };
                 myContext.Users.Add(user);
                 var userSaved = myContext.SaveChanges();

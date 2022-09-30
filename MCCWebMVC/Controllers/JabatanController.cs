@@ -1,19 +1,16 @@
-﻿using MCCWebMVC.Models;
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System;
-using System.Data.SqlClient;
-using MCCWebMVC.Context;
-using System.Linq;
+﻿using MCCWebMVC.Context;
+using MCCWebMVC.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace MCCWebMVC.Controllers
 {
-    public class GajiController : Controller
+    public class JabatanController : Controller
     {
         MyContext myContext;
 
-        public GajiController(MyContext myContext)
+        public JabatanController(MyContext myContext)
         {
             this.myContext = myContext;
         }
@@ -22,7 +19,7 @@ namespace MCCWebMVC.Controllers
         //READ
         public IActionResult Index()
         {
-            //var data = myContext.Gajis.ToList();
+            //var data = myContext.Jabatans.ToList();
 
             //return View(data);
             var role = HttpContext.Session.GetString("Role");
@@ -30,7 +27,7 @@ namespace MCCWebMVC.Controllers
                 role = "Guest";
             if (role.Equals("Admin"))
             {
-                var data = myContext.Gajis.ToList();
+                var data = myContext.Jabatans.ToList();
                 if (data != null)
                     return View(data);
             }
@@ -46,11 +43,11 @@ namespace MCCWebMVC.Controllers
         //post
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Gaji gaji)
+        public IActionResult Create(Jabatan jabatan)
         {
             if (ModelState.IsValid)
             {
-                myContext.Gajis.Add(gaji);
+                myContext.Jabatans.Add(jabatan);
                 var result = myContext.SaveChanges();
                 if (result > 0)
                     return RedirectToAction("Index");
@@ -62,22 +59,21 @@ namespace MCCWebMVC.Controllers
         //GET
         public IActionResult Edit(int id)
         {
-            var data = myContext.Gajis.Where(x => x.Id == id).SingleOrDefault();
+            var data = myContext.Jabatans.Where(x => x.Id == id).SingleOrDefault();
             return View(data);
         }
 
         //POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, Gaji gaji)
+        public IActionResult Edit(int id, Jabatan jabatan)
         {
-            var data = myContext.Gajis.FirstOrDefault(x => x.Id == id);
+            var data = myContext.Jabatans.FirstOrDefault(x => x.Id == id);
 
             if (data != null)
             {
-                data.Pokok = gaji.Pokok;
-                data.Bank = gaji.Bank;
-                data.Rekening = gaji.Rekening;
+                data.Name = jabatan.Name;
+                data.Tunjangan = jabatan.Tunjangan;
                 myContext.SaveChanges();
 
                 return RedirectToAction("Index");
@@ -90,19 +86,19 @@ namespace MCCWebMVC.Controllers
         //get
         public IActionResult Delete(int id)
         {
-            var data = myContext.Gajis.Where(x => x.Id == id).SingleOrDefault();
+            var data = myContext.Jabatans.Where(x => x.Id == id).SingleOrDefault();
             return View(data);
         }
 
         //post
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Delete(int id, Gaji gaji)
+        public IActionResult Delete(int id, Jabatan jabatan)
         {
-            var data = myContext.Gajis.FirstOrDefault(x => x.Id == id);
+            var data = myContext.Jabatans.FirstOrDefault(x => x.Id == id);
             if (data != null)
             {
-                myContext.Gajis.Remove(data);
+                myContext.Jabatans.Remove(data);
                 myContext.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -113,9 +109,8 @@ namespace MCCWebMVC.Controllers
         //DETAILS
         public IActionResult Details(int id)
         {
-            var data = myContext.Gajis.Where(x => x.Id == id).SingleOrDefault();
+            var data = myContext.Jabatans.Where(x => x.Id == id).SingleOrDefault();
             return View(data);
         }
-
     }
 }

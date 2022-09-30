@@ -6,7 +6,7 @@ namespace MCCWebAPI.Respositories.Interface
 {
     public interface IKaryawanRepository
     {
-        List<EmployeeData> Get();
+        /*List<EmployeeData> Get();
 
         EmployeeData Get(int id);
 
@@ -15,5 +15,6 @@ namespace MCCWebAPI.Respositories.Interface
         int Put(KaryawanViewModel karyawan);
 
         int Delete(int id);
+        */
     }
 }

@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace MCCWebAPI.Respositories.Data
 {
-    public class KaryawanRepository : IKaryawanRepository
+    public class KaryawanRepository 
     {
         MyContext myContext;
 
@@ -20,32 +20,30 @@ namespace MCCWebAPI.Respositories.Data
         public int Delete(int id)
         {
             var data = Get(id);
-            myContext.Karyawans.Remove(data);
+            myContext.Employees.Remove(data);
             var result = myContext.SaveChanges();
             return result;
         }
 
-        public List<EmployeeData> Get()
+        public List<Employee> Get()
         {
-            var data = myContext.Karyawans.Include(data => data.Jabatan).Include(data => data.Gaji).ToList();
+            var data = myContext.Employees.Include(data => data.Jabatan).ToList();
             return data;
         }
 
-        public EmployeeData Get(int id)
+        public Employee Get(int id)
         {
-            var data = myContext.Karyawans.Find(id);
+            var data = myContext.Employees.Find(id);
             return data;
         }
 
         public int Post(KaryawanViewModel karyawan)
         {
-            myContext.Karyawans.Add(new EmployeeData
+            myContext.Employees.Add(new Employee
             {
                 Id = karyawan.Id,
-                Name = karyawan.Name,
-                Ktp = karyawan.Ktp,
-                JabatanId = karyawan.JabatanId,
-                GajiId = karyawan.GajiId
+                Telpon = karyawan.Telpon,
+                JabatanId = karyawan.JabatanId
             });
             var result = myContext.SaveChanges();
             return result;
@@ -53,13 +51,10 @@ namespace MCCWebAPI.Respositories.Data
 
         public int Put(KaryawanViewModel karyawan)
         {
-            var data = myContext.Karyawans.Find(karyawan.Id);
-            data.Name = karyawan.Name;
-            data.Ktp = karyawan.Ktp;
+            var data = myContext.Employees.Find(karyawan.Id);
             data.Telpon = karyawan.Telpon;
             data.JabatanId = karyawan.JabatanId;
-            data.GajiId = karyawan.GajiId;
-            myContext.Karyawans.Update(data);
+            myContext.Employees.Update(data);
             var result = myContext.SaveChanges();
             return result;
         }

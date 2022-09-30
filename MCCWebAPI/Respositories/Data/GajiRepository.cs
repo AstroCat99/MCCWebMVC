@@ -46,8 +46,6 @@ namespace MCCWebAPI.Respositories.Data
         {
             var data = Get(gaji.Id);
             data.Pokok = gaji.Pokok;
-            data.Tunjangan = gaji.Tunjangan;
-            data.Akomodasi = gaji.Akomodasi;
             data.Bank = gaji.Bank;
             data.Rekening = gaji.Rekening;
             myContext.Gajis.Update(data);
